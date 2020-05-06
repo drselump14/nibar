@@ -7,6 +7,10 @@ const containerStyle = {
   gridGap: "8px"
 };
 
+const yabaiType = {
+  color:"red"
+}
+
 const desktopStyle = {
   width: "3ch",
 };
@@ -34,7 +38,9 @@ const renderSpace = (index, focused, visible, windows) => {
 const render = ({ output }) => {
   if (typeof output === "undefined") return null;
 
-  const spaces = [];
+  const spaces = []
+  const focusedSpace = output.filter(space => space.focused == 1)[0]
+  console.log(focusedSpace)
 
   output.forEach(function(space) {
     spaces.push(renderSpace(space.index, space.focused, space.visible, space.windows));
@@ -42,7 +48,7 @@ const render = ({ output }) => {
 
   return (
     <div style={containerStyle}>
-      {spaces}
+      {focusedSpace.type}{spaces}
     </div>
   );
 };
